@@ -27,36 +27,35 @@ app.directive('pending', function() {
 
     app.directive('notify', function() {
     	return {
-    		restrict: 'AE',
+    		restrict: 'EA',
     		scope: {
-    			request: '&',
     			title: '=',
     			body: '=',
     			icon: '=',
     		},
     		link: function(scope, elem, attr) {
+    			
     	     var Notification = window.Notification || window.mozNotification || window.webkitNotification;
              Notification.requestPermission(function (permission) {
-                console.log(permission);
+                  console.log(permission);
+                  console.log(Notification);
+
+                 }) 
+                  elem.on('click', function() {
+                  var notification = new Notification(scope.title, { body: scope.body, icon: scope.icon});
+
+                  
              });
+              
+    	
 
-    		}
-
-
+         
 
     	}
 
+     }
 
-
-
-
-
-
-
-
-
-
-    })
+ })
 
 
 
